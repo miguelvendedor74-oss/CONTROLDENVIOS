@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Control de Envíos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📦 Control de Envíos</h1>
+
+        <label for="usuario">Usuario</label>
+
+        <select id="usuario">
+
+            <option value="Miguel">Miguel</option>
+            <option value="Usuario 2">Usuario 2</option>
+            <option value="Usuario 3">Usuario 3</option>
+
+        </select>
+
+        <button id="btnEscanear">
+            Iniciar Escáner
+        </button>
+
+        <!-- Aquí aparecerá la cámara -->
+        <div id="reader"></div>
+
+        <!-- Mensajes del sistema -->
+        <div id="mensaje"></div>
+
+    </div>
+
+    <!-- Configuración -->
+    <script src="config.js"></script>
+
+    <!-- Aplicación -->
+    <script src="app.js"></script>
+
+</body>
+
+</html>
