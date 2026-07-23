@@ -211,7 +211,6 @@ async function codigoDetectado(texto) {
 
 }
 
-}
 
 function errorEscaneo(error) {
 
