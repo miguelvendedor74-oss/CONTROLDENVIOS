@@ -118,9 +118,40 @@ async function detenerScanner() {
 
 async function codigoDetectado(texto) {
 
+    // Si ya estamos enviando una guía, ignorar nuevas lecturas
     if (enviando) return;
 
-    if (texto === ultimaGuia) return;
+    texto = texto.trim();
+
+    // ¿Es la misma lectura que la anterior?
+    if (texto === ultimaLectura) {
+
+        lecturasConsecutivas++;
+
+    } else {
+
+        // Es una lectura distinta, reiniciar contador
+        ultimaLectura = texto;
+        lecturasConsecutivas = 1;
+
+    }
+
+    console.log(
+        "Lectura:",
+        texto,
+        "| Confirmaciones:",
+        lecturasConsecutivas
+    );
+
+    // Esperar hasta tener varias lecturas iguales
+    if (lecturasConsecutivas < LECTURAS_NECESARIAS) {
+        return;
+    }
+
+    // Evitar registrar dos veces la misma guía
+    if (texto === ultimaGuia) {
+        return;
+    }
 
     ultimaGuia = texto;
     enviando = true;
@@ -132,6 +163,7 @@ async function codigoDetectado(texto) {
         const parametros = new URLSearchParams();
 
         parametros.append("guia", texto);
+
         parametros.append(
             "usuario",
             document.getElementById("usuario").value
@@ -142,20 +174,13 @@ async function codigoDetectado(texto) {
             body: parametros
         });
 
-        console.log("========== RESPUESTA DEL SERVIDOR ==========");
-        console.log("Status:", respuesta.status);
-        console.log("Status Text:", respuesta.statusText);
-        console.log("OK:", respuesta.ok);
-
         if (!respuesta.ok) {
             throw new Error("Error HTTP: " + respuesta.status);
         }
 
         const datos = await respuesta.json();
 
-        console.log("Contenido recibido:");
         console.log(datos);
-        console.log("============================================");
 
         mostrarMensaje(
             datos.mensaje,
@@ -164,21 +189,27 @@ async function codigoDetectado(texto) {
 
     } catch (error) {
 
-        console.error("========== ERROR ==========");
         console.error(error);
-        console.error("Mensaje:", error.message);
-        console.error("===========================");
 
-        mostrarMensaje("ERROR: " + error.message, "error");
+        mostrarMensaje(
+            "ERROR: " + error.message,
+            "error"
+        );
 
     }
 
+    // Reiniciar variables
     setTimeout(() => {
 
         enviando = false;
         ultimaGuia = "";
 
+        ultimaLectura = "";
+        lecturasConsecutivas = 0;
+
     }, 1000);
+
+}
 
 }
 
