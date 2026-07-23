@@ -5,7 +5,8 @@
  ************************************************/
 
 "use strict";
-
+let ultimaLectura = "";
+let lecturasConsecutivas = 0;
 let scanner = null;
 let escaneando = false;
 let enviando = false;
