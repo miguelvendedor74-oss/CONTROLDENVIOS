@@ -210,8 +210,6 @@ async function codigoDetectado(texto) {
     }, 1000);
 
 }
-
-
 function errorEscaneo(error) {
 
     // Ignorar errores normales del escáner
