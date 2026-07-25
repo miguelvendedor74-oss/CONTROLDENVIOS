@@ -13,6 +13,8 @@ let ultimaGuia = "";
 // NUEVAS VARIABLES
 let ultimaLectura = "";
 let lecturasConsecutivas = 0;
+const sonidoBeep = new Audio("beep.mp3");
+sonidoBeep.preload = "auto";
 
 // Número de veces que debe leerse igual
 const LECTURAS_NECESARIAS = 3;
