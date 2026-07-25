@@ -15,6 +15,8 @@ let ultimaLectura = "";
 let lecturasConsecutivas = 0;
 const sonidoBeep = new Audio("beep.mp3");
 sonidoBeep.preload = "auto";
+const sonidoDuplicada = new Audio("duplicada.mp3");
+sonidoDuplicada.preload = "auto";
 
 // Número de veces que debe leerse igual
 const LECTURAS_NECESARIAS = 3;
@@ -194,9 +196,17 @@ if (!/^\d+$/.test(texto)) {
             datos.mensaje,
             datos.ok ? "ok" : "error"
         );
- if (datos.ok) {
+if (datos.ok) {
+
     sonidoBeep.currentTime = 0;
     sonidoBeep.play().catch(() => {});
+
+} else {
+
+    sonidoDuplicada.currentTime = 0;
+    sonidoDuplicada.play().catch(() => {});
+
+}
 }
     } catch (error) {
 
