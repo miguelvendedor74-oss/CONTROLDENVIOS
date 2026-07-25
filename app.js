@@ -207,7 +207,6 @@ if (datos.ok) {
     sonidoDuplicada.play().catch(() => {});
 
 }
-}
     } catch (error) {
 
         console.error(error);
