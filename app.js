@@ -124,6 +124,12 @@ async function codigoDetectado(texto) {
     if (enviando) return;
 
     texto = texto.trim();
+    
+    // Solo aceptar números
+if (!/^\d+$/.test(texto)) {
+    console.log("Descartado (contiene letras):", texto);
+    return;
+}
 
     // ¿Es la misma lectura que la anterior?
     if (texto === ultimaLectura) {
