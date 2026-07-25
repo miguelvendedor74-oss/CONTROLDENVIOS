@@ -188,7 +188,10 @@ async function codigoDetectado(texto) {
             datos.mensaje,
             datos.ok ? "ok" : "error"
         );
-
+ if (datos.ok) {
+    sonidoBeep.currentTime = 0;
+    sonidoBeep.play().catch(() => {});
+}
     } catch (error) {
 
         console.error(error);
