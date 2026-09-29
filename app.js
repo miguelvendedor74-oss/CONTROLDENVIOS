@@ -19,7 +19,7 @@ const sonidoDuplicada = new Audio("duplicada.mp3");
 sonidoDuplicada.preload = "auto";
 
 // Número de veces que debe leerse igual
-const LECTURAS_NECESARIAS = 3;
+const LECTURAS_NECESARIAS = 5;
 
 document.addEventListener("DOMContentLoaded", iniciarApp);
 
@@ -66,8 +66,8 @@ async function iniciarScanner() {
             {
                 fps: 10,
               qrbox: {
-    width: 260,
-    height: 90
+    width: 270,
+    height: 100
 }
             },
             codigoDetectado,
@@ -241,9 +241,3 @@ function mostrarMensaje(texto, tipo = "ok") {
     const mensaje = document.getElementById("mensaje");
 
     if (!mensaje) return;
-
-    mensaje.style.display = "block";
-    mensaje.className = tipo;
-    mensaje.textContent = texto;
-
-}
