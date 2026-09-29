@@ -21,7 +21,12 @@
 
         <h1>📦 Control de Envíos 📦</h1>
 
-        <label for="usuario">Usuario</label>
+
+        <!-- USUARIO -->
+
+        <label for="usuario">
+            Usuario
+        </label>
 
         <select id="usuario">
 
@@ -36,32 +41,63 @@
             <option value="NADIA">NADIA</option>
             <option value="NUBIA">NUBIA</option>
             <option value="ARTURO">ARTURO</option>
-            <option value="ATENCION AL CLIENTE">ATENCION AL CLIENTE</option>
+            <option value="ATENCION AL CLIENTE">
+                ATENCION AL CLIENTE
+            </option>
             <option value="JOSSA">JOSSA</option>
             <option value="ANA">ANA</option>
             <option value="LIZ">LIZ</option>
             <option value="VALENTINA">VALENTINA</option>
             <option value="CHEPE">CHEPE</option>
-            
 
         </select>
+
+
+        <!-- PAQUETERÍA -->
+
+        <label for="paqueteria">
+            Paquetería
+        </label>
+
+        <select id="paqueteria">
+
+            <option value="DHL">
+                DHL
+            </option>
+
+            <option value="ESTAFETA">
+                ESTAFETA
+            </option>
+
+        </select>
+
+
+        <!-- BOTÓN -->
 
         <button id="btnEscanear">
             Iniciar Escáner
         </button>
 
-        <!-- Aquí aparecerá la cámara -->
+
+        <!-- LECTOR -->
+
         <div id="reader"></div>
 
-        <!-- Mensajes del sistema -->
+
+        <!-- MENSAJE -->
+
         <div id="mensaje"></div>
 
     </div>
 
-    <!-- Configuración -->
+
+    <!-- CONFIGURACIÓN -->
+
     <script src="config.js"></script>
 
-    <!-- Aplicación -->
+
+    <!-- APLICACIÓN -->
+
     <script src="app.js"></script>
 
 </body>
