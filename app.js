@@ -1,243 +1,96 @@
-/************************************************
- * CONTROL DE ENVÍOS
- * APP.JS
- * VERSIÓN 3.3
- ************************************************/
+<!DOCTYPE html>
+<html lang="es">
 
-"use strict";
-let scanner = null;
-let escaneando = false;
-let enviando = false;
-let ultimaGuia = "";
+<head>
 
-// NUEVAS VARIABLES
-let ultimaLectura = "";
-let lecturasConsecutivas = 0;
-const sonidoBeep = new Audio("beep.mp3");
-sonidoBeep.preload = "auto";
-const sonidoDuplicada = new Audio("duplicada.mp3");
-sonidoDuplicada.preload = "auto";
+    <meta charset="UTF-8">
 
-// Número de veces que debe leerse igual
-const LECTURAS_NECESARIAS = 5;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-document.addEventListener("DOMContentLoaded", iniciarApp);
+    <title>Control de Envíos</title>
 
-function iniciarApp() {
+    <link rel="stylesheet" href="style.css">
 
-    console.log(CONFIG.APP_NAME);
-    console.log("Versión:", CONFIG.VERSION);
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 
-    const boton = document.getElementById("btnEscanear");
+</head>
 
-    if (!boton) {
-        console.error("No existe el botón btnEscanear");
-        return;
-    }
+<body>
 
-    boton.addEventListener("click", toggleScanner);
+    <div class="container">
 
-}
+        <h1>📦 Control de Envíos</h1>
 
-async function toggleScanner() {
+        <!-- USUARIO -->
 
-    console.log("CLICK");
+        <label for="usuario">
+            Usuario
+        </label>
 
-    if (escaneando) {
-        await detenerScanner();
-    } else {
-        await iniciarScanner();
-    }
+        <select id="usuario">
 
-}
+            <option value="Miguel">
+                Miguel
+            </option>
 
-async function iniciarScanner() {
+            <option value="Usuario 2">
+                Usuario 2
+            </option>
 
-    try {
+            <option value="Usuario 3">
+                Usuario 3
+            </option>
 
-        mostrarMensaje("Abriendo cámara...", "ok");
+        </select>
 
-        scanner = new Html5Qrcode("reader");
 
-        await scanner.start(
-            {
-                facingMode: "environment"
-            },
-            {
-                fps: 10,
-              qrbox: {
-    width: 270,
-    height: 100
-}
-            },
-            codigoDetectado,
-            errorEscaneo
-        );
+        <!-- PAQUETERÍA -->
 
-        escaneando = true;
+        <label for="paqueteria">
+            Paquetería
+        </label>
 
-        document.getElementById("btnEscanear").textContent =
-            "Detener Escáner";
+        <select id="paqueteria">
 
-        mostrarMensaje("Escáner listo.", "ok");
+            <option value="DHL">
+                DHL
+            </option>
 
-    } catch (error) {
+            <option value="ESTAFETA">
+                Estafeta
+            </option>
 
-        console.error(error);
+        </select>
 
-        mostrarMensaje("No fue posible abrir la cámara.", "error");
 
-    }
+        <!-- BOTÓN ESCÁNER -->
 
-}
+        <button id="btnEscanear">
+            Iniciar Escáner
+        </button>
 
-async function detenerScanner() {
 
-    try {
+        <!-- LECTOR -->
 
-        if (scanner) {
+        <div id="reader"></div>
 
-            await scanner.stop();
-            await scanner.clear();
 
-        }
+        <!-- MENSAJES -->
 
-    } catch (error) {
+        <div id="mensaje"></div>
 
-        console.error(error);
+    </div>
 
-    }
 
-    scanner = null;
-    escaneando = false;
+    <!-- CONFIGURACIÓN -->
 
-    document.getElementById("reader").innerHTML = "";
+    <script src="config.js"></script>
 
-    document.getElementById("btnEscanear").textContent =
-        "Iniciar Escáner";
 
-    mostrarMensaje("Escáner detenido.", "ok");
+    <!-- APLICACIÓN -->
 
-}
+    <script src="app.js"></script>
 
-async function codigoDetectado(texto) {
+</body>
 
-    // Si ya estamos enviando una guía, ignorar nuevas lecturas
-    if (enviando) return;
-
-    texto = texto.trim();
-    
-    // Solo aceptar números
-if (!/^\d+$/.test(texto)) {
-    console.log("Descartado (contiene letras):", texto);
-    return;
-}
-
-    // ¿Es la misma lectura que la anterior?
-    if (texto === ultimaLectura) {
-
-        lecturasConsecutivas++;
-
-    } else {
-
-        // Es una lectura distinta, reiniciar contador
-        ultimaLectura = texto;
-        lecturasConsecutivas = 1;
-
-    }
-
-    console.log(
-        "Lectura:",
-        texto,
-        "| Confirmaciones:",
-        lecturasConsecutivas
-    );
-
-    // Esperar hasta tener varias lecturas iguales
-    if (lecturasConsecutivas < LECTURAS_NECESARIAS) {
-        return;
-    }
-
-    // Evitar registrar dos veces la misma guía
-    if (texto === ultimaGuia) {
-        return;
-    }
-
-    ultimaGuia = texto;
-    enviando = true;
-
-    mostrarMensaje("Registrando guía...", "ok");
-
-    try {
-
-        const parametros = new URLSearchParams();
-
-        parametros.append("guia", texto);
-
-        parametros.append(
-            "usuario",
-            document.getElementById("usuario").value
-        );
-
-        const respuesta = await fetch(CONFIG.API_URL, {
-            method: "POST",
-            body: parametros
-        });
-
-        if (!respuesta.ok) {
-            throw new Error("Error HTTP: " + respuesta.status);
-        }
-
-        const datos = await respuesta.json();
-
-        console.log(datos);
-
-        mostrarMensaje(
-            datos.mensaje,
-            datos.ok ? "ok" : "error"
-        );
-if (datos.ok) {
-
-    sonidoBeep.currentTime = 0;
-    sonidoBeep.play().catch(() => {});
-
-} else {
-
-    sonidoDuplicada.currentTime = 0;
-    sonidoDuplicada.play().catch(() => {});
-
-}
-    } catch (error) {
-
-        console.error(error);
-
-        mostrarMensaje(
-            "ERROR: " + error.message,
-            "error"
-        );
-
-    }
-
-    // Reiniciar variables
-    setTimeout(() => {
-
-        enviando = false;
-        ultimaGuia = "";
-
-        ultimaLectura = "";
-        lecturasConsecutivas = 0;
-
-    }, 1000);
-
-}
-function errorEscaneo(error) {
-
-    // Ignorar errores normales del escáner
-
-}
-
-function mostrarMensaje(texto, tipo = "ok") {
-
-    const mensaje = document.getElementById("mensaje");
-
-    if (!mensaje) return;
+</html>
