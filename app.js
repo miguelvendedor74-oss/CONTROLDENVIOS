@@ -318,14 +318,10 @@ async function detenerScanner() {
 
 async function codigoDetectado(texto) {
     if (enviando) return;
-
     texto = texto.trim();
-
     if (texto === "") return;
-
     // EXTRAER ÚNICAMENTE LOS DÍGITOS
     const digitos = texto.replace(/\D/g, "");
-
     // ACEPTAR SOLAMENTE GUÍAS DE 10 DÍGITOS
     if (digitos.length !== 10) {
         console.log("Código ignorado:", texto);
