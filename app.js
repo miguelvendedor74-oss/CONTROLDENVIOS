@@ -317,22 +317,23 @@ async function detenerScanner() {
  ************************************************/
 
 async function codigoDetectado(texto) {
-
-    if (enviando) {
-
-        return;
-
-    }
-
+    if (enviando) return;
 
     texto = texto.trim();
 
+    if (texto === "") return;
 
-    if (texto === "") {
+    // EXTRAER ÚNICAMENTE LOS DÍGITOS
+    const digitos = texto.replace(/\D/g, "");
 
+    // ACEPTAR SOLAMENTE GUÍAS DE 10 DÍGITOS
+    if (digitos.length !== 10) {
+        console.log("Código ignorado:", texto);
         return;
-
     }
+
+    // UTILIZAR LA GUÍA LIMPIA
+    texto = digitos;
 
 
     /********************************************
