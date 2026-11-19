@@ -112,24 +112,3 @@ button:disabled{
     }
 
 }
-/* CORRECCIÓN VISUAL DEL ESCÁNER EN MÓVILES */
-
-#reader {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 12px;
-}
-
-#reader video {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-}
-
-#reader #qr-shaded-region {
-    z-index: 10 !important;
-    pointer-events: none !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
