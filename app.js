@@ -34,8 +34,6 @@ const LECTURAS_NECESARIAS = 3;
 /************************************************
  * CONFIGURACIÓN DE PAQUETERÍAS
  ************************************************/
-
-
 const CONFIG_SCANNER = {
     DHL: {
         formato: Html5QrcodeSupportedFormats.CODE_128,
@@ -53,7 +51,6 @@ const CONFIG_SCANNER = {
         })
     }
 };
-
 
 /************************************************
  * INICIO DE LA APLICACIÓN
