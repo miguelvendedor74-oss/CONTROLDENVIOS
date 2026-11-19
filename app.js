@@ -320,16 +320,20 @@ async function codigoDetectado(texto) {
     if (enviando) return;
     texto = texto.trim();
     if (texto === "") return;
-    // EXTRAER ÚNICAMENTE LOS DÍGITOS
+   // FILTRO ESPECIAL PARA DHL
+const paqueteria = document.getElementById("paqueteria").value;
+
+if (paqueteria === "DHL") {
+
     const digitos = texto.replace(/\D/g, "");
-    // ACEPTAR SOLAMENTE GUÍAS DE 10 DÍGITOS
+
     if (digitos.length !== 10) {
-        console.log("Código ignorado:", texto);
+        console.log("Código DHL ignorado:", texto);
         return;
     }
 
-    // UTILIZAR LA GUÍA LIMPIA
     texto = digitos;
+}
 
 
     /********************************************
