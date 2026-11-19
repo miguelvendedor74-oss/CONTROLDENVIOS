@@ -37,18 +37,18 @@ const LECTURAS_NECESARIAS = 3;
 const CONFIG_SCANNER = {
     DHL: {
         formato: Html5QrcodeSupportedFormats.CODE_128,
-        qrbox: (ancho, alto) => ({
-            width: Math.floor(ancho * 0.90),
-            height: Math.min(100, Math.floor(alto * 0.35))
-        })
+        qrbox: {
+            width: 250,
+            height: 100
+        }
     },
 
     ESTAFETA: {
         formato: Html5QrcodeSupportedFormats.PDF_417,
-        qrbox: (ancho, alto) => ({
-            width: Math.floor(ancho * 0.90),
-            height: Math.min(150, Math.floor(alto * 0.45))
-        })
+        qrbox: {
+            width: 250,
+            height: 150
+        }
     }
 };
 
