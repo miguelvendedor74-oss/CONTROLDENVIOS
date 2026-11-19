@@ -38,15 +38,15 @@ const CONFIG_SCANNER = {
     DHL: {
         formato: Html5QrcodeSupportedFormats.CODE_128,
         qrbox: {
-            width: 300,
-            height: 300
+            width: 360,
+            height: 100
         }
     },
 
     ESTAFETA: {
         formato: Html5QrcodeSupportedFormats.PDF_417,
         qrbox: {
-            width: 250,
+            width: 360,
             height: 150
         }
     }
