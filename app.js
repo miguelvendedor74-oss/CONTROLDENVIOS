@@ -38,8 +38,8 @@ const CONFIG_SCANNER = {
     DHL: {
         formato: Html5QrcodeSupportedFormats.CODE_128,
         qrbox: {
-            width: 250,
-            height: 100
+            width: 300,
+            height: 300
         }
     },
 
