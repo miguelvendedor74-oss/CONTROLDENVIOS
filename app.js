@@ -190,14 +190,12 @@ async function iniciarScanner() {
         );
 
 
-        scanner = new Html5Qrcode(
-            "reader",
-            {
-                formatsToSupport: configuracion.formatos
-                ]
-            }
-        );
-
+     scanner = new Html5Qrcode(
+    "reader",
+    {
+        formatsToSupport: configuracion.formatos
+    }
+);
 
         await scanner.start(
 
