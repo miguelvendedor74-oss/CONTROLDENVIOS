@@ -193,8 +193,7 @@ async function iniciarScanner() {
         scanner = new Html5Qrcode(
             "reader",
             {
-                formatsToSupport: [
-                    configuracion.formato
+                formatsToSupport: configuracion.formatos
                 ]
             }
         );
@@ -331,6 +330,7 @@ async function codigoDetectado(texto) {
     if (enviando) return;
     texto = texto.trim();
     if (texto === "") return;
+    mostrarMensaje("Código leído: " + texto, "info");
     console.log("Lectura bruta:", texto);
 mostrarMensaje("Código detectado: " + texto, "info");
    // FILTRO ESPECIAL PARA DHL
