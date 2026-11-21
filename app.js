@@ -36,7 +36,17 @@ const LECTURAS_NECESARIAS = 3;
  ************************************************/
 const CONFIG_SCANNER = {
     DHL: {
-        formato: Html5QrcodeSupportedFormats.CODE_128,
+        formatos: [
+            Html5QrcodeSupportedFormats.CODE_128,
+            Html5QrcodeSupportedFormats.CODE_39,
+            Html5QrcodeSupportedFormats.CODE_93,
+            Html5QrcodeSupportedFormats.ITF,
+            Html5QrcodeSupportedFormats.EAN_13,
+            Html5QrcodeSupportedFormats.EAN_8,
+            Html5QrcodeSupportedFormats.UPC_A,
+            Html5QrcodeSupportedFormats.UPC_E,
+            Html5QrcodeSupportedFormats.CODABAR
+        ],
         qrbox: {
             width: 300,
             height: 120
@@ -44,7 +54,9 @@ const CONFIG_SCANNER = {
     },
 
     ESTAFETA: {
-        formato: Html5QrcodeSupportedFormats.PDF_417,
+        formatos: [
+            Html5QrcodeSupportedFormats.PDF_417
+        ],
         qrbox: {
             width: 300,
             height: 150
