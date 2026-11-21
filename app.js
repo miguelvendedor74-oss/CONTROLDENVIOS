@@ -179,9 +179,9 @@ async function iniciarScanner() {
 
 
         console.log(
-            "Formato:",
-            configuracion.formato
-        );
+    "Formatos:",
+    configuracion.formatos
+);
 
 
         mostrarMensaje(
