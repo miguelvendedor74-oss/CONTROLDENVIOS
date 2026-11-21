@@ -319,6 +319,8 @@ async function codigoDetectado(texto) {
     if (enviando) return;
     texto = texto.trim();
     if (texto === "") return;
+    console.log("Lectura bruta:", texto);
+mostrarMensaje("Código detectado: " + texto, "info");
    // FILTRO ESPECIAL PARA DHL
 const paqueteria = document.getElementById("paqueteria").value;
 
