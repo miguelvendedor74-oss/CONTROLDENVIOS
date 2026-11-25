@@ -197,10 +197,9 @@ async function iniciarScanner() {
     }
 );
 
-        await scanner.start(
+     await scanner.start(
     {
-        facingMode: { ideal: "environment" },
-        focusMode: { ideal: "continuous" }
+        facingMode: "environment"
     },
     {
         fps: 8,
@@ -209,7 +208,6 @@ async function iniciarScanner() {
     codigoDetectado,
     errorEscaneo
 );
-
 
         escaneando = true;
 
