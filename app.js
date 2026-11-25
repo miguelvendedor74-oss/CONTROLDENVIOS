@@ -198,25 +198,17 @@ async function iniciarScanner() {
 );
 
         await scanner.start(
-
-            {
-                facingMode: "environment"
-            },
-
-            {
-
-                fps: 8,
-
-                qrbox:
-                    configuracion.qrbox
-
-            },
-
-            codigoDetectado,
-
-            errorEscaneo
-
-        );
+    {
+        facingMode: { ideal: "environment" },
+        focusMode: { ideal: "continuous" }
+    },
+    {
+        fps: 8,
+        qrbox: configuracion.qrbox
+    },
+    codigoDetectado,
+    errorEscaneo
+);
 
 
         escaneando = true;
