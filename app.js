@@ -415,10 +415,7 @@ if (paqueteria === "DHL") {
     enviando = true;
 
 
-    mostrarMensaje(
-        "Registrando guía...",
-        "ok"
-    );
+  mostrarMensaje("Registrando guía: " + texto, "ok");
 
 
     /********************************************
