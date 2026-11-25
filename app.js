@@ -368,29 +368,24 @@ document.getElementById("guiaActual").textContent =
     );
 
 
-    /********************************************
-     * ESPERAR CONFIRMACIÓN
-     ********************************************/
+  /********************************************
+ * ESPERAR CONFIRMACIÓN
+ ********************************************/
 
-    if (
-        lecturasConsecutivas <
-        LECTURAS_NECESARIAS
-    ) {
+if (lecturasConsecutivas < LECTURAS_NECESARIAS) {
 
+    if (paqueteria !== "ESTAFETA") {
         mostrarMensaje(
-
             "Confirmando lectura " +
             lecturasConsecutivas +
             "/" +
             LECTURAS_NECESARIAS,
-
             "info"
-
         );
-
-        return;
-
     }
+
+    return;
+}
 
 
     /********************************************
