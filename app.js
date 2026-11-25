@@ -336,8 +336,12 @@ if (paqueteria === "DHL") {
     texto = digitos;
 }
 
-    document.getElementById("guiaActual").textContent =
-    "Guía detectada: " + texto;
+   const guiaVisual = paqueteria === "ESTAFETA"
+    ? texto.replace(/\D/g, "").slice(0, 22)
+    : texto;
+
+document.getElementById("guiaActual").textContent =
+    "Guía detectada: " + guiaVisual;
 
     /********************************************
      * COMPROBAR LECTURAS REPETIDAS
