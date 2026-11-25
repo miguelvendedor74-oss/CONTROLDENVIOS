@@ -409,7 +409,7 @@ document.getElementById("guiaActual").textContent =
     enviando = true;
 
 
-  mostrarMensaje("Registrando guía: " + texto, "ok");
+mostrarMensaje("Registrando guía: " + guiaVisual, "info");
 
 
     /********************************************
