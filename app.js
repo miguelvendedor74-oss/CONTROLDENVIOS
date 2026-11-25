@@ -346,6 +346,8 @@ if (paqueteria === "DHL") {
     texto = digitos;
 }
 
+    document.getElementById("guiaActual").textContent =
+    "Guía detectada: " + texto;
 
     /********************************************
      * COMPROBAR LECTURAS REPETIDAS
