@@ -65,13 +65,13 @@ button:disabled{
     cursor:not-allowed;
 }
 
-#reader{
-    width:100%;
-    margin-top:25px;
-    overflow:hidden;
-    border-radius:12px;
+#reader {
+    width: 100%;
+    margin-top: 25px;
+    overflow: hidden;
+    border-radius: 12px;
+    position: relative;
 }
-
 #mensaje{
     margin-top:20px;
     padding:15px;
@@ -123,4 +123,37 @@ button:disabled{
     font-size: 20px;
     font-weight: bold;
     overflow-wrap: anywhere;
+}
+/* Marco visual del área de escaneo */
+#reader::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 120px;
+    max-width: calc(100% - 20px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #00e676;
+    border-radius: 8px;
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Marco más alto para Estafeta */
+#reader[data-paqueteria="ESTAFETA"]::after {
+    height: 150px;
+}
+/* Reduce la altura de la cámara en celulares */
+@media (max-width: 600px) {
+  #reader {
+    max-height: 380px;
+    overflow: hidden;
+  }
+
+  #reader video {
+    max-height: 380px;
+    object-fit: cover;
+  }
 }
